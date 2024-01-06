@@ -16,7 +16,7 @@ cd ~/.kube/
 cp config config.bak
  
 # merge both kube config files
-$ENV:KUBECONFIG = "C:\Users\mrjamiebowman\.kube\config;C:\Users\mrjamiebowman\.kube\config-devbox"
+$ENV:KUBECONFIG = "C:\Users\roofer92\.kube\config;C:\Users\roofer92\.kube\config-devbox"
  
 # verify that the variable is set
 $ENV:KUBECONFIG
