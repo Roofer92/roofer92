@@ -2,7 +2,6 @@
 
 ## Best Practices
 
-
 ### kube config
 
 #### merge two config files
@@ -69,6 +68,30 @@ Create Credentials to pull from private registry
 ````
 kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
 ````
+
+## Debugging
+
+### Debug pod
+
+Apply a Pod for debug purpose of the image
+
+````yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-pod
+  namespace: default
+spec:
+  containers:
+    - name: debug-container
+      image: <your-image-name>
+      command: [ "/bin/sleep" ]  # Sleep command to keep the container running
+      args: [ "infinity" ]  # Sleep indefinitely to prevent the container from exiting
+````
+
+Alternatively the ```sleep infinity``` command can be added to a deployments image, to keep a container running.
+
+
 
 ## Monitoring
 
