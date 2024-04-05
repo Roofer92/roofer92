@@ -1,6 +1,60 @@
 # Kubernetes
 
-## Best Practices
+## Development
+
+### PowerShell Profile Configuration
+
+Run:
+```shell
+notepad $profile
+```
+
+And paste the following file:
+
+```shell
+Set-Alias -Name k -Value kubectl
+Set-Alias -Name np -Value C:\Windows\notepad.exe
+function GetPods([string]$namespace=”default”)
+{
+ kubectl get pods -n $namespace
+}
+Set-Alias -Name kgp -Value GetPods
+function GetPodsWide([string]$namespace=”default”)
+{
+ kubectl get pods -n $namespace -o wide
+}
+Set-Alias -Name kgpw -Value GetPods
+function GetAll([string]$namespace=”default”)
+{
+ kubectl get all -n $namespace
+}
+Set-Alias -Name kgall -Value GetAll
+function GetNodes()
+{
+ kubectl get nodes -o wide
+}
+Set-Alias -Name kgn -Value GetNodes
+function DescribePod([string]$container, [string]$namespace=”default”)
+{
+ kubectl describe po $container -n $namespace
+}
+Set-Alias -Name kdp -Value DescribePod
+function GetLogs([string]$container, [string]$namespace=”default”)
+{
+ kubectl logs pod/$container -n $namespace
+}
+Set-Alias -Name klp -Value GetLogs
+function ApplyYaml([string]$filenamer, [string]$namespace=”default”)
+{
+ kubectl apply -f $filename -n $namespace
+}
+Set-Alias -Name kaf -Value ApplyYaml
+function ExecContainerShell([string]$container, [string]$namespace=”default”)
+{
+ kubectl exec -it $container -n $namespace — sh
+}
+Set-Alias -Name kexec -Value ExecContainerShell
+```
 
 ### kube config
 
@@ -47,6 +101,12 @@ $ kubectl config view --flatten > /tmp/config
 $ mv /tmp/config ~/.kube/config 
 # (optional) Delete the backup once you confirm everything worked ok 
 $ rm ~/.kube/config.bak
+```
+
+### use a selected namespace for each kubectl cmd
+
+```
+kubectl config set-context $(kubectl config current-context) --namespace=example-ns
 ```
 
 ### Job
@@ -139,32 +199,3 @@ The global scrape_interval is 1 minute. To scrape metrics for pods with a custom
       target_label: kubernetes_pod_name
 ```
 
-<!--
-
-## Useful Links
-
-### Cheatsheets
-- []()
-- []()
-
-### Articles
-- []()
-- []()
-
-### Youtube
-- []()
-- []()
-
-### Pluralsight/Lynda/LinkedIn Learning Courses
-- []()
-- []()
-
-### Books to read
-- []()
-- []()
-
-### Stackoverflow
-- []()
-- []()
-
--->
