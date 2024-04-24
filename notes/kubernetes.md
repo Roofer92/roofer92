@@ -14,17 +14,17 @@ And paste the following file:
 ```shell
 Set-Alias -Name k -Value kubectl
 Set-Alias -Name np -Value C:\Windows\notepad.exe
-function GetPods([string]$namespace=”default”)
+function GetPods([string]$namespace="default")
 {
  kubectl get pods -n $namespace
 }
 Set-Alias -Name kgp -Value GetPods
-function GetPodsWide([string]$namespace=”default”)
+function GetPodsWide([string]$namespace="default")
 {
  kubectl get pods -n $namespace -o wide
 }
 Set-Alias -Name kgpw -Value GetPods
-function GetAll([string]$namespace=”default”)
+function GetAll([string]$namespace="default")
 {
  kubectl get all -n $namespace
 }
@@ -34,24 +34,24 @@ function GetNodes()
  kubectl get nodes -o wide
 }
 Set-Alias -Name kgn -Value GetNodes
-function DescribePod([string]$container, [string]$namespace=”default”)
+function DescribePod([string]$container, [string]$namespace="default")
 {
  kubectl describe po $container -n $namespace
 }
 Set-Alias -Name kdp -Value DescribePod
-function GetLogs([string]$container, [string]$namespace=”default”)
+function GetLogs([string]$container, [string]$namespace="default")
 {
  kubectl logs pod/$container -n $namespace
 }
 Set-Alias -Name klp -Value GetLogs
-function ApplyYaml([string]$filenamer, [string]$namespace=”default”)
+function ApplyYaml([string]$filenamer, [string]$namespace="default")
 {
  kubectl apply -f $filename -n $namespace
 }
 Set-Alias -Name kaf -Value ApplyYaml
-function ExecContainerShell([string]$container, [string]$namespace=”default”)
+function ExecContainerShell([string]$container, [string]$namespace="default")
 {
- kubectl exec -it $container -n $namespace — sh
+ kubectl exec -it $container -n $namespace - sh
 }
 Set-Alias -Name kexec -Value ExecContainerShell
 ```
